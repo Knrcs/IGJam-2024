@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e02bd44faf1c4118a9a39ea775782ae, type: 3}
+  m_Name: TestCard
+  m_EditorClassIdentifier: 
+  cardName: Test
+  skill: Flip
+  description: We Flip Cards
+  cardImage: {fileID: 21300000, guid: 562ded8435f7b4da896622f3f5a9d7c4, type: 3}
+  manaCost: 3
