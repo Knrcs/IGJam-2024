@@ -1,0 +1,34 @@
+{
+    "name": "IA_Game",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "c3a907f0-d486-48d6-a4a6-d220efa2c286",
+            "actions": [
+                {
+                    "name": "DebugMana",
+                    "type": "Button",
+                    "id": "9320e305-ee77-4e0f-a87a-0712ddfb6615",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f595aa95-0a01-451c-b086-615008cc56e0",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DebugMana",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

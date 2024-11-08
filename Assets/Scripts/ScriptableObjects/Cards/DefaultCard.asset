@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e02bd44faf1c4118a9a39ea775782ae, type: 3}
-  m_Name: TestCard
+  m_Name: DefaultCard
   m_EditorClassIdentifier: 
-  cardName: Test
-  skill: Flip
-  description: We Flip Cards
-  cardImage: {fileID: 21300000, guid: 562ded8435f7b4da896622f3f5a9d7c4, type: 3}
-  manaCost: 3
+  cardName: DefaultCard
+  skill: Invalid
+  description: Congratulations! You got an invalid card :3
+  cardImage: {fileID: 21300000, guid: b78fb6101b6584ee4870eefef861f6c6, type: 3}
+  manaCost: 99
