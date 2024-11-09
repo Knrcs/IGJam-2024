@@ -8,16 +8,10 @@ public class C_Mana : MonoBehaviour
     public int mana;
     private int maxMana;
     public GameObject[] manaBlibs;
-    private IA_Game _inputActionReference;
 
     // Start is called before the first frame update
     void Start()
     {
-        _inputActionReference = new IA_Game();
-
-         _inputActionReference.Enable();
-
-        _inputActionReference.Player.DebugMana.performed += movelarm => { DebugMana(); };
 
 
         SetMana();
@@ -70,13 +64,5 @@ public class C_Mana : MonoBehaviour
             //TODO put spell fuction here
         }
 
-    }
-    public void DebugMana()
-    {
-        #if UNITY_EDITOR
-        {
-            RemoveMana(2);
-        }
-        #endif
     }
 }

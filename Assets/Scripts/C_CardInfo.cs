@@ -18,12 +18,12 @@ public class C_CardInfo : MonoBehaviour
     // Initialize Card
     void Start()
     {   
-       cardImage = GetComponent<Image>();
 
-
+        //Puts Scriptable Object Variables into UI Card
+        cardImage = GetComponent<Image>();
         skillText.text = cards.skill;
         descriptionText.text = cards.description;
-        var cardManaCost = Convert.ToString(cards.manaCost);
+        var cardManaCost = cards.manaCost.ToString();
         manaCostText.text = cardManaCost;
         cardImage.sprite = cards.cardImage;
     }
