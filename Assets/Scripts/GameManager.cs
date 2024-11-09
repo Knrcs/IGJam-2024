@@ -56,8 +56,6 @@ public class GameManager : MonoBehaviour
             case GameState.PlayerTurn:
             PlayerTurn();
                 break;
-            case GameState.EndTurn:
-                break;
             case GameState.OppoentsTurn:
                 break;
             case GameState.Win:
@@ -89,6 +87,10 @@ public class GameManager : MonoBehaviour
         manaFunctions.SetMaxMana();
         bottleneckFunctions.CheckBottleneck();
     }
+    public void EndPlayerTurn()
+    {
+        UpdateGameState(GameState.OppoentsTurn);
+    }
     public void Randomize()
     {
         rngCard = Random.Range(0, cards.Length);
@@ -104,7 +106,6 @@ public class GameManager : MonoBehaviour
     {
         DrawCard,
         PlayerTurn,
-        EndTurn,
         OppoentsTurn,
         Win,
         Lose
