@@ -13,7 +13,7 @@ public class C_Bottleneck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        bottleNeckFill.fillAmount = 0;
     }
 
     // Update is called once per frame
@@ -21,4 +21,7 @@ public class C_Bottleneck : MonoBehaviour
     {
         
     }
+
+
+
 }

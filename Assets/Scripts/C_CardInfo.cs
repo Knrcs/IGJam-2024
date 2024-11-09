@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class C_CardInfo : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class C_CardInfo : MonoBehaviour
         manaCostText.text = cardManaCost;
         cardImage.sprite = cards.cardImage;
     }
+
+
 
 
 }
