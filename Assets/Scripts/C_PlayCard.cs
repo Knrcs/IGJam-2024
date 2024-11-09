@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Threading.Tasks;
 using Spine;
+using Spine.Unity;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -14,9 +16,11 @@ public class C_PlayCard : MonoBehaviour, IPointerDownHandler
 
     public C_CardInfo cardInfoFunction;
     private string clickedCardEffect;
+    public SkeletonAnimation skeletonAnimation;
 
         private void Start()
     {
+        skeletonAnimation = GameObject.FindGameObjectWithTag("Enemy").GetComponent<SkeletonAnimation>();
         manaFunction = GameObject.FindGameObjectWithTag("Player").GetComponent<C_Mana>();
         healthFunction = GameObject.FindGameObjectWithTag("Player").GetComponent<C_Health>();
         damageFunction = GameObject.FindGameObjectWithTag("Enemy").GetComponent <C_Health>();
@@ -52,12 +56,16 @@ public class C_PlayCard : MonoBehaviour, IPointerDownHandler
 
     #region Card Effects
 
-    public void DoCardEvents()
+    public async void DoCardEvents()
     {
         if (clickedCardEffect == "Slash") //SO Slash
         {
             Debug.Log("[PlayCard] - Playing Slash Card!");
             damageFunction.RemoveHealth(2);
+            skeletonAnimation.AnimationName = "attacking_01";
+            await Task.Delay(250);
+            skeletonAnimation.AnimationName = "idle";
+
         }
         else if (clickedCardEffect == "Broken Bottle") //SO Broken Bottle
         {

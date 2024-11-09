@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 public class C_CardInfo : MonoBehaviour
 {
 
-    [HideInInspector] public GameManager gameManager;
+    public GameManager gameManager;
     public Cards cards;
     public TMP_Text cardNameText;
     public TMP_Text skillText;
@@ -22,6 +22,13 @@ public class C_CardInfo : MonoBehaviour
     // Initialize Card
     void Start()
     {   
+        gameManager = GameManager.instance;
+        if (cards == null)
+        {
+            Debug.Log(gameManager.rngCard);
+            cards = gameManager.cards[gameManager.rngCard];
+            Debug.Log("[CardInfo] - " + gameManager.rngCard + " is the cardID");
+        }
         collider = GetComponent<BoxCollider2D>();
         gameManager = GameManager.instance;
         gameObject.name = cards.cardName + gameManager.cardID.ToString("D4");

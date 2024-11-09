@@ -631,7 +631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  cards: {fileID: 11400000, guid: 42a6ee28603fe46338dea2007b2332a9, type: 2}
+  cards: {fileID: 0}
   cardNameText: {fileID: 283979877235500962}
   skillText: {fileID: 1910586568930552380}
   descriptionText: {fileID: 8215565074647662532}
@@ -697,4 +697,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manaFunction: {fileID: 0}
   healthFunction: {fileID: 0}
+  damageFunction: {fileID: 0}
   cardInfoFunction: {fileID: 0}
