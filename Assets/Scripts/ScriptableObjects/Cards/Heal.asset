@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e02bd44faf1c4118a9a39ea775782ae, type: 3}
-  m_Name: InvalidCard
+  m_Name: Heal
   m_EditorClassIdentifier: 
-  cardName: InvalidCard
-  skill: Invalid
-  description: Congratulations! You got an invalid card :3
-  cardImage: {fileID: 21300000, guid: aea6222e63e0f43c0ae2cd17e6fc5d01, type: 3}
-  manaCost: 99
+  cardName: Barista
+  skill: Heal
+  description: Gain <#BDE4A8>2 Health</color>
+  cardImage: {fileID: 21300000, guid: da012bfe2557b4bdcb9f18b5caefe6f9, type: 3}
+  manaCost: 2

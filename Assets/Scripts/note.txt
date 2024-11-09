@@ -1,0 +1,5 @@
+Color HEX colors
+
+Healing: <#bde4a8> </color>
+DPS: <#d90368> </color>
+Effect: <#99b2dd> </color>

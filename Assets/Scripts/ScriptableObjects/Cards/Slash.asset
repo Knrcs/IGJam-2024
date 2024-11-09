@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Slash
   skill: Attack
-  description: Macht Damage dies das
-  cardImage: {fileID: 21300000, guid: b78fb6101b6584ee4870eefef861f6c6, type: 3}
-  manaCost: 1
+  description: Slash your opponent with <#d90368> 2 Damage </color>
+  cardImage: {fileID: 21300000, guid: 42622b0a79af041b9bb698fe0ec77416, type: 3}
+  manaCost: 2

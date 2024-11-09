@@ -6,7 +6,8 @@ using  UnityEngine.UI;
 
 public class C_Bottleneck : MonoBehaviour
 {
-    public TMP_Text multiplyerText;
+    public TMP_Text damageModifyerText;
+    public int extraDamage;
     public GameObject[] cardStack;
     public Image bottleNeckFill;
 

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e02bd44faf1c4118a9a39ea775782ae, type: 3}
-  m_Name: InvalidCard
+  m_Name: HotPotato
   m_EditorClassIdentifier: 
-  cardName: InvalidCard
-  skill: Invalid
-  description: Congratulations! You got an invalid card :3
-  cardImage: {fileID: 21300000, guid: aea6222e63e0f43c0ae2cd17e6fc5d01, type: 3}
-  manaCost: 99
+  cardName: Hot Potato
+  skill: Spell
+  description: 1 - 3 Damage, can explode when holding the card
+  cardImage: {fileID: 21300000, guid: ca2c8bab20cc34cecbb105d60a49ca37, type: 3}
+  manaCost: 1
