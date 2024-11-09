@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance {  get; private set; }
 
     public GameState State;
+    public int cardID = 1;
 
     public static event Action<GameState> OnGameStateChanged;
 
@@ -59,5 +60,10 @@ public class GameManager : MonoBehaviour
         OppoentsTurn,
         Win,
         Lose
+    }
+    public enum PlayCardEffects
+    {
+        SLASH,
+        BROKENBOTTLE
     }
 }

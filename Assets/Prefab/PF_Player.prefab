@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 300631976818031788}
   - component: {fileID: 3886843533299732478}
   - component: {fileID: 7237649310636383894}
+  - component: {fileID: 4022681060578565613}
+  - component: {fileID: 8763039223661518468}
   m_Layer: 0
   m_Name: PF_Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,7 +48,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mana: 3
-  startMana: 3
   manaBlibs:
   - {fileID: 0}
   - {fileID: 0}
@@ -88,3 +89,32 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &4022681060578565613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5303785930185734779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f22e032f3f4fd4b61a64ff747ea6bab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthText: {fileID: 0}
+  currentHealth: 10
+--- !u!114 &8763039223661518468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5303785930185734779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cfda9c1e2e1643448ec1de4b0e066f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  multiplyerText: {fileID: 0}
+  cardStack: []
+  bottleNeckFill: {fileID: 0}

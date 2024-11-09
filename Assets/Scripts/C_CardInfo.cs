@@ -9,6 +9,7 @@ using UnityEngine.EventSystems;
 public class C_CardInfo : MonoBehaviour
 {
 
+    public GameManager gameManager;
     public Cards cards;
     public TMP_Text skillText;
     public TMP_Text descriptionText;
@@ -19,7 +20,9 @@ public class C_CardInfo : MonoBehaviour
     // Initialize Card
     void Start()
     {   
-
+        gameManager = GameManager.instance;
+        gameObject.name = cards.cardName + gameManager.cardID.ToString("D4");
+        gameManager.cardID++;
         //Puts Scriptable Object Variables into UI Card
         cardImage = GetComponent<Image>();
         skillText.text = cards.skill;

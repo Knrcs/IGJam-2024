@@ -43,11 +43,6 @@ public class C_Mana : MonoBehaviour
 
     public void RemoveMana(int rmMana)
     {
-        if(mana <= rmMana)
-        {
-            Debug.Log("Not enough mana to cast card");
-        }
-        else
         {
             mana = mana-rmMana;
             for(int i = 0; i < manaBlibs.Length; i++)
@@ -61,7 +56,6 @@ public class C_Mana : MonoBehaviour
             }
 
             Debug.Log("Casting Card total mana available: " + mana);
-            //TODO put spell fuction here
         }
 
     }

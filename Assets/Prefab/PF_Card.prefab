@@ -415,6 +415,7 @@ GameObject:
   - component: {fileID: 3515535407043753220}
   - component: {fileID: 6455288371690646263}
   - component: {fileID: 7886132031462951819}
+  - component: {fileID: 2825912734236261573}
   m_Layer: 5
   m_Name: PF_Card
   m_TagString: Untagged
@@ -544,3 +545,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2825912734236261573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8722878990376240030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2689eac59d279473fac41a6a7c270385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manaFunction: {fileID: 0}
+  healthFunction: {fileID: 0}
+  cardInfoFunction: {fileID: 0}
