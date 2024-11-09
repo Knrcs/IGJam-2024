@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
 
@@ -22,6 +23,9 @@ public class GameManager : MonoBehaviour
     private int lastNumber;
     public GameObject cardPrefab;
     public Transform playerHand;
+    public Physics2DRaycaster raycast;
+    public C_Mana manaFunctions;
+    public C_Bottleneck bottleneckFunctions;
 
     public static event Action<GameState> OnGameStateChanged;
 
@@ -50,6 +54,7 @@ public class GameManager : MonoBehaviour
             DrawCard();
                 break;
             case GameState.PlayerTurn:
+            PlayerTurn();
                 break;
             case GameState.EndTurn:
                 break;
@@ -67,12 +72,22 @@ public class GameManager : MonoBehaviour
     }
     public async void DrawCard()
     {
+        Debug.Log("[GameState] - Draw Turn");
         for (int i = cardsInHand; i < 5; i++)
         {
             Randomize();
             await Task.Delay(120);
             Instantiate(cardPrefab, playerHand);
         } 
+        UpdateGameState(GameState.PlayerTurn);
+    }
+
+    public void PlayerTurn()
+    {
+        raycast.enabled = true;
+        manaFunctions.CheckMaxMana();
+        manaFunctions.SetMaxMana();
+        bottleneckFunctions.CheckBottleneck();
     }
     public void Randomize()
     {

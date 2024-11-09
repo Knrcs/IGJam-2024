@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Heal
   m_EditorClassIdentifier: 
   cardName: Barista
-  skill: Heal
+  skill: Skill
   description: Gain <#BDE4A8>2 Health</color>
   cardImage: {fileID: 21300000, guid: da012bfe2557b4bdcb9f18b5caefe6f9, type: 3}
   manaCost: 2

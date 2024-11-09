@@ -86,6 +86,11 @@ public class C_PlayCard : MonoBehaviour, IPointerDownHandler
         {
             Debug.Log("[PlayCard] -  Playing Bottleflip");
         }
+        else if (clickedCardEffect == "Five Finger Filet")
+        {
+            Debug.Log("[PlayCard] - Playing Five Finger Filet");
+            healthFunction.RemoveHealth(2);
+        }
 
 
         else
