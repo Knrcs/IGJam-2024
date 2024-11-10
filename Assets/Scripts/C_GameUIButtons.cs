@@ -9,6 +9,7 @@ public class C_GameUIButtons : MonoBehaviour
 public void StartAgain()
 {
     SceneManager.LoadScene(1);
+    Time.timeScale = 1;
 }
 public void MainMenu()
 {
