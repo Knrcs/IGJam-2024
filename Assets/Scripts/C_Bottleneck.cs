@@ -41,21 +41,27 @@ public class C_Bottleneck : MonoBehaviour
         Debug.Log("[BottleNeck] - Total Bottleneck Cards: " + totalBottleneckCards);
         bottleNeckFill.fillAmount = bottleFillValue;
 
-        if (totalBottleneckCards >= 5)
+        if (totalBottleneckCards <= 5)
         {
             extraDamage = 0;
+            damageModifyerText.text = "+" + extraDamage.ToString();
         }
-        else if (totalBottleneckCards >= 7)
+        else if (totalBottleneckCards <= 7)
         {
             extraDamage = 1;
+            damageModifyerText.text = "+" + extraDamage.ToString();
+
         }
-        else if (totalBottleneckCards >= 9)
+        else if (totalBottleneckCards <= 9)
         {
             extraDamage = 2;
+            damageModifyerText.text = "+" + extraDamage.ToString();
+
         }
         else if (totalBottleneckCards >= 10)
         {
             extraDamage = 3;
+            damageModifyerText.text = "+" + extraDamage.ToString();
         }        
     }
 
