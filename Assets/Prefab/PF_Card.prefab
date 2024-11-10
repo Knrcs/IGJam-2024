@@ -550,6 +550,7 @@ GameObject:
   - component: {fileID: 6455288371690646263}
   - component: {fileID: 7886132031462951819}
   - component: {fileID: 2825912734236261573}
+  - component: {fileID: 6693214201414033104}
   m_Layer: 5
   m_Name: PF_Card
   m_TagString: Card
@@ -698,4 +699,27 @@ MonoBehaviour:
   manaFunction: {fileID: 0}
   healthFunction: {fileID: 0}
   damageFunction: {fileID: 0}
+  playCardAnimation: {fileID: 0}
   cardInfoFunction: {fileID: 0}
+  skeletonAnimation: {fileID: 0}
+--- !u!95 &6693214201414033104
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8722878990376240030}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9c5b2ef92aa197342bc152b2eea2839a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

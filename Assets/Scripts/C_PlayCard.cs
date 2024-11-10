@@ -14,6 +14,7 @@ public class C_PlayCard : MonoBehaviour, IPointerDownHandler
     public C_Health healthFunction;
     public C_Health damageFunction;
 
+    public Animator playCardAnimation;
     public C_CardInfo cardInfoFunction;
     private string clickedCardEffect;
     public SkeletonAnimation skeletonAnimation;
@@ -25,6 +26,9 @@ public class C_PlayCard : MonoBehaviour, IPointerDownHandler
         healthFunction = GameObject.FindGameObjectWithTag("Player").GetComponent<C_Health>();
         damageFunction = GameObject.FindGameObjectWithTag("Enemy").GetComponent <C_Health>();
         cardInfoFunction = GetComponent<C_CardInfo>();
+        // playCardAnimation = GetComponent<Animator>(); Suche ich aufm richtigem Objekt?
+
+
         AddPhysics2DRaycaster();
     }
 
@@ -36,6 +40,7 @@ public class C_PlayCard : MonoBehaviour, IPointerDownHandler
             clickedCardEffect = eventData.pointerCurrentRaycast.gameObject.GetComponent<C_CardInfo>().cards.cardName;
             manaFunction.RemoveMana(cardInfoFunction.cards.manaCost);
             DoCardEvents();
+            // playCardAnimation.Play("AnimationAfterCardPlayed"); Maybe play Animation?
             Destroy(eventData.pointerCurrentRaycast.gameObject);
         }
         else 
