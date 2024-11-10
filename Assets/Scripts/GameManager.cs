@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
     public C_Bottleneck bottleneckFunctions;
     public GameObject endTurnButton;
     public bool playerTurn;
+    public GameObject loseScreen;
+    public bool canEnemyplay;
 
     public static event Action<GameState> OnGameStateChanged;
 
@@ -71,11 +73,19 @@ public class GameManager : MonoBehaviour
             PlayerTurn();
                 break;
             case GameState.OppoentsTurn:
-            OppoentsTurn();
+                if(canEnemyplay == false)
+                {
+                    UpdateGameState(GameState.DrawCard);
+                }
+                if(canEnemyplay == true)
+                {
+                    OppoentsTurn();
+                }
                 break;
             case GameState.Win:
                 break;
             case GameState.Lose:
+                LoseGame();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
@@ -96,6 +106,7 @@ public class GameManager : MonoBehaviour
 
         } 
         Debug.Log("Warum machst du so");
+        canEnemyplay = true;
         UpdateGameState(GameState.PlayerTurn);
     }
 
@@ -134,6 +145,8 @@ public class GameManager : MonoBehaviour
                         await Task.Delay(600);
                         bossAnimation.AnimationName = "idle";
                         await Task.Delay(700);
+                        CheckHealth();
+
                     }
                     else break;
                 break;
@@ -146,6 +159,7 @@ public class GameManager : MonoBehaviour
                         await Task.Delay(600);
                         bossAnimation.AnimationName = "idle";
                         await Task.Delay(700);
+                        CheckHealth();
                     }
                     else break;
                 break;
@@ -158,6 +172,8 @@ public class GameManager : MonoBehaviour
                         await Task.Delay(600);
                         bossAnimation.AnimationName = "idle";
                         await Task.Delay(700);
+                        CheckHealth();
+
                     }
                     else break;
                 break;
@@ -170,6 +186,7 @@ public class GameManager : MonoBehaviour
                         await Task.Delay(600);
                         bossAnimation.AnimationName = "idle";
                         await Task.Delay(700);
+                        CheckHealth();
                     } 
                     else break;
                 break;
@@ -188,6 +205,22 @@ public class GameManager : MonoBehaviour
         }
         lastNumber = rngCard;
         Debug.Log("[GameManager] - " + rngCard + "is the CardID");
+    }
+
+    public void LoseGame()
+    {
+        loseScreen.SetActive(true);
+        Time.timeScale = 0;
+
+
+    }
+
+    public void CheckHealth()
+    {
+        if (bossDoDamage.currentHealth <= 0)
+        {
+            UpdateGameState(GameState.Lose);
+        }
     }
     public enum GameState
     {

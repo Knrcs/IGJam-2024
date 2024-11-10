@@ -116,6 +116,7 @@ public class C_PlayCard : MonoBehaviour, IPointerDownHandler
             gameManager.cardsInHand--;
             Debug.Log("[PlayCard] - Playing Five Finger Filet");
             healthFunction.RemoveHealth(2);
+            gameManager.CheckHealth();
         }
         else if (clickedCardEffect == "Hot Potato")
         {
@@ -130,6 +131,13 @@ public class C_PlayCard : MonoBehaviour, IPointerDownHandler
             skeletonAnimation.AnimationName = "being_attacked_02";
             await Task.Delay(600);
             skeletonAnimation.AnimationName = "idle";
+            gameManager.CheckHealth();
+        }
+        else if (clickedCardEffect == "Lock")
+        {
+            gameManager.cardsInHand--;
+            Debug.Log("[PlayCard] - Playing Lock");
+            gameManager.canEnemyplay = false;
         }
 
 
