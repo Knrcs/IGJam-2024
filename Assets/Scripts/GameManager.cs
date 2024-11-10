@@ -19,6 +19,11 @@ public class GameManager : MonoBehaviour
 
     //BOSSTURN
     private int randomPlayingCard;
+    public int bossRotation = 2;
+
+    public GameObject pirateBoss;
+    public GameObject seaCreatureBoss;
+    public GameObject CorkBoss;
 
 
 
@@ -42,6 +47,8 @@ public class GameManager : MonoBehaviour
     public bool playerTurn;
     public GameObject loseScreen;
     public bool canEnemyplay;
+    public SkeletonAnimation[] skeletonAssets;
+    public C_PlayCard playCard;
 
     public static event Action<GameState> OnGameStateChanged;
 
@@ -83,6 +90,7 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case GameState.Win:
+            Win();
                 break;
             case GameState.Lose:
                 LoseGame();
@@ -112,6 +120,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerTurn()
     {
+        playCard.CheckBoss();
         playerTurn = true;
         manaFunctions.CheckMaxMana();
         manaFunctions.SetMaxMana();
@@ -221,6 +230,47 @@ public class GameManager : MonoBehaviour
         {
             UpdateGameState(GameState.Lose);
         }
+        if (bossHealth.currentHealth <= 0)
+        {
+            UpdateGameState(GameState.Win);
+        }
+    }
+
+    public void Win()
+    {
+        if(bossRotation == 1)
+        {
+            bossAnimation = skeletonAssets[0];
+            seaCreatureBoss.SetActive(false);
+            pirateBoss.SetActive(true);
+            CorkBoss.SetActive(false);
+            bossRotation = 2;
+        }
+        else if(bossRotation == 2)
+        {
+            bossAnimation = skeletonAssets[1];
+            seaCreatureBoss.SetActive(true);
+            pirateBoss.SetActive(false);
+            CorkBoss.SetActive(false);
+
+            bossRotation = 3;
+        }
+        else if(bossRotation == 3)
+        {
+            bossAnimation = skeletonAssets[2];
+            seaCreatureBoss.SetActive(false);
+            pirateBoss.SetActive(false);
+            CorkBoss.SetActive(true);
+
+            bossRotation = 1;
+        }
+        bossHealth.currentHealth = 0;
+        bossHealth.healthBonus = bossHealth.healthBonus + 3;
+        bossHealth.currentHealth = 10 + bossHealth.healthBonus;
+        bossHealth.healthText.text = bossHealth.currentHealth.ToString();
+        manaFunctions.NewRoundMana(2);
+        bossManaFunctions.NewRoundMana(1);
+        UpdateGameState(GameState.DrawCard);
     }
     public enum GameState
     {

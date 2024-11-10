@@ -59,6 +59,10 @@ public class C_Mana : MonoBehaviour
             manaBlibs[i].SetActive(true);
         } 
     }
+    public void NewRoundMana(int i)
+    {
+        maxMana = i;
+    }
 
     public void RemoveMana(int rmMana)
     {
