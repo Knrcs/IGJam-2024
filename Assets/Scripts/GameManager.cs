@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Spine.Unity;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
@@ -14,6 +16,12 @@ public class GameManager : MonoBehaviour
     public static GameManager instance {  get; private set; }
 
     public GameState State;
+
+    //BOSSTURN
+    private int randomPlayingCard;
+
+
+
     public int cardID = 1; //For the Card Names
     public Cards[] cards; //Array of Scriptable Objects
 
@@ -25,7 +33,11 @@ public class GameManager : MonoBehaviour
     public Transform playerHand;
     public Physics2DRaycaster raycast;
     public C_Mana manaFunctions;
+    public C_Mana bossManaFunctions;
+    public C_Health bossDoDamage;
+    public SkeletonAnimation bossAnimation;
     public C_Bottleneck bottleneckFunctions;
+    public GameObject endTurnButton;
 
     public static event Action<GameState> OnGameStateChanged;
 
@@ -57,6 +69,7 @@ public class GameManager : MonoBehaviour
             PlayerTurn();
                 break;
             case GameState.OppoentsTurn:
+            OppoentsTurn();
                 break;
             case GameState.Win:
                 break;
@@ -73,9 +86,12 @@ public class GameManager : MonoBehaviour
         Debug.Log("[GameState] - Draw Turn");
         for (int i = cardsInHand; i < 5; i++)
         {
+            cardsInHand++;
             Randomize();
             await Task.Delay(120);
             Instantiate(cardPrefab, playerHand);
+            bottleneckFunctions.RemoveOneFromBottleneck();
+
         } 
         UpdateGameState(GameState.PlayerTurn);
     }
@@ -86,10 +102,77 @@ public class GameManager : MonoBehaviour
         manaFunctions.CheckMaxMana();
         manaFunctions.SetMaxMana();
         bottleneckFunctions.CheckBottleneck();
+        endTurnButton.SetActive(true);
     }
     public void EndPlayerTurn()
     {
+        endTurnButton.SetActive(false);
         UpdateGameState(GameState.OppoentsTurn);
+    }
+
+    public async void OppoentsTurn()
+    {
+        bossManaFunctions.CheckMaxMana();
+        bossManaFunctions.SetMaxMana();
+        await Task.Delay(1000);
+
+        for(int i = 0; i < 5; i++) //5 tries to play cards
+        {
+            randomPlayingCard = Random.Range(1,4);
+            switch(randomPlayingCard)
+            {
+                case 1: //Slash
+                    if(bossManaFunctions.mana >= 2)
+                    {
+                        bossManaFunctions.RemoveMana(2);
+                        bossDoDamage.RemoveHealth(2);
+                        bossAnimation.AnimationName = "attacking_01";
+                        await Task.Delay(600);
+                        bossAnimation.AnimationName = "idle";
+                        await Task.Delay(700);
+                    }
+                    else break;
+                break;
+                case 2: //Broken Bottle
+                    if(bossManaFunctions.mana >= 3)
+                    {
+                        bossManaFunctions.RemoveMana(3);
+                        bossDoDamage.RemoveHealth(4);
+                        bossAnimation.AnimationName = "attacking_02";
+                        await Task.Delay(600);
+                        bossAnimation.AnimationName = "idle";
+                        await Task.Delay(700);
+                    }
+                    else break;
+                break;
+                case 3: //Punch
+                    if(bossManaFunctions.mana >= 1)
+                    {
+                        bossManaFunctions.RemoveMana(1);
+                        bossDoDamage.RemoveHealth(1);
+                        bossAnimation.AnimationName = "attacking_01";
+                        await Task.Delay(600);
+                        bossAnimation.AnimationName = "idle";
+                        await Task.Delay(700);
+                    }
+                    else break;
+                break;
+                case 4: //Barista
+                    if(bossManaFunctions.mana <= 2)
+                    {
+                        bossManaFunctions.RemoveMana(2);
+                        bossDoDamage.AddHealth(2);
+                        bossAnimation.AnimationName = "attacking_01";
+                        await Task.Delay(600);
+                        bossAnimation.AnimationName = "idle";
+                        await Task.Delay(700);
+                    } 
+                    else break;
+                break;
+            }
+            Debug.Log("Boss Turn: " + i);
+        }
+        UpdateGameState(GameState.DrawCard);
     }
     public void Randomize()
     {

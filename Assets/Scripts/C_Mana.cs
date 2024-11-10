@@ -77,3 +77,4 @@ public class C_Mana : MonoBehaviour
 
     }
 }
+
