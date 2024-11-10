@@ -67,7 +67,7 @@ public class C_Bottleneck : MonoBehaviour
 
     public void GenerateCards()
     {
-        rdmBottleneckCards = Random.Range(1,5);
+        rdmBottleneckCards = Random.Range(0,3);
     }
 
     public void PutCardsInBottleNeckDeck()

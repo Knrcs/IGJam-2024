@@ -7,6 +7,7 @@ public class C_Health : MonoBehaviour
 {
     public TMP_Text healthText;
     public int currentHealth;
+    public int healthBonus;
     private GameManager gameManager;
     // Start is called before the first frame update
     void Start()

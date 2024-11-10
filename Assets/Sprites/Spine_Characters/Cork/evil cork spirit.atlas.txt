@@ -1,0 +1,69 @@
+evil cork spirit.png
+size:1956,1189
+filter:Linear,Linear
+pma:true
+scale:0.5
+bodyORB
+bounds:2,337,850,592
+offsets:25,0,901,592
+rotate:90
+body_01
+bounds:596,439,748,466
+rotate:90
+body_02
+bounds:1270,7,682,463
+body_03
+bounds:596,3,672,434
+body_04
+bounds:1064,472,715,447
+rotate:90
+body_05
+bounds:1513,531,656,441
+rotate:90
+cork_eye_L
+bounds:216,137,193,198
+offsets:0,0,193,199
+cork_eye_R
+bounds:2,119,212,216
+eye_L
+bounds:170,2,55,52
+rotate:90
+eye_R
+bounds:170,2,55,52
+rotate:90
+eye_L hurt
+bounds:116,2,55,52
+rotate:90
+eye_L_angry
+bounds:2,2,57,55
+eye_R_angry
+bounds:61,2,55,53
+rotate:90
+eye_R_blink_01
+bounds:224,2,55,52
+rotate:90
+eye_R_blink_01 copy
+bounds:2,59,57,58
+offsets:0,0,58,58
+eye_R_blink_02
+bounds:238,80,55,52
+rotate:90
+eye_R_blink_02 copy
+bounds:61,59,57,58
+offsets:0,0,58,58
+eye_R_blink_03
+bounds:278,23,55,52
+rotate:90
+eye_R_blink_03 copy
+bounds:120,59,57,58
+offsets:0,0,58,58
+eye_R_blink_04
+bounds:292,80,55,52
+rotate:90
+eye_R_blink_04 copy
+bounds:179,59,58,57
+offsets:0,1,58,59
+rotate:90
+eye_R_hurt
+bounds:332,23,55,52
+rotate:90

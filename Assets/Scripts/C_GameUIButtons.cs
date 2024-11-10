@@ -1,16 +1,19 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class QuitGame : MonoBehaviour
+public class C_GameUIButtons : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
+public void StartAgain()
+{
+    SceneManager.LoadScene(1);
+}
+public void MainMenu()
+{
+    SceneManager.LoadScene(0);
+}
 
     public void QuitGamelol()
     {
@@ -20,20 +23,12 @@ public class QuitGame : MonoBehaviour
 
     public void Credits()
     {
-        Application.OpenURL("");
+        Application.OpenURL("https://knrc.itch.io/battleneck");
         Debug.Log("Credits Are Happening");
     }
     
     public void LoadScene(int sceneInteger)
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-        
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
