@@ -13,6 +13,7 @@ public class C_PlayCard : MonoBehaviour, IPointerDownHandler
     public C_Mana manaFunction;
     public C_Health healthFunction;
     public C_Health damageFunction;
+    public GameManager gameManager;
 
     // public Animator playCardAnimation;
     public C_CardInfo cardInfoFunction;
@@ -21,6 +22,7 @@ public class C_PlayCard : MonoBehaviour, IPointerDownHandler
 
         private void Start()
     {
+        gameManager = GameManager.instance;
         skeletonAnimation = GameObject.FindGameObjectWithTag("Enemy").GetComponent<SkeletonAnimation>();
         manaFunction = GameObject.FindGameObjectWithTag("Player").GetComponent<C_Mana>();
         healthFunction = GameObject.FindGameObjectWithTag("Player").GetComponent<C_Health>();
@@ -66,33 +68,45 @@ public class C_PlayCard : MonoBehaviour, IPointerDownHandler
         if (clickedCardEffect == "Slash") //SO Slash
         {
             Debug.Log("[PlayCard] - Playing Slash Card!");
+            gameManager.cardsInHand--;
             damageFunction.RemoveHealth(2);
-            skeletonAnimation.AnimationName = "attacking_01";
-            await Task.Delay(250);
+            skeletonAnimation.AnimationName = "being_attacked_01";
+            await Task.Delay(600);
             skeletonAnimation.AnimationName = "idle";
 
         }
         else if (clickedCardEffect == "Broken Bottle") //SO Broken Bottle
         {
             Debug.Log("[PlayCard] - Playing Broken Bottle!");
+            gameManager.cardsInHand--;
             damageFunction.RemoveHealth(4);
+            skeletonAnimation.AnimationName = "being_attacked_01";
+            await Task.Delay(600);
+            skeletonAnimation.AnimationName = "idle";
         }
         else if (clickedCardEffect == "Barista") //SO Heal
         {
+            gameManager.cardsInHand--;
             Debug.Log("[PlayCard] - Playing Barista Card");
             healthFunction.AddHealth(2);
         }
         else if (clickedCardEffect == "Punch")
         {
+            gameManager.cardsInHand--;
             Debug.Log("[PlayCard] - Playing Punch");
             damageFunction.RemoveHealth(1);
+            skeletonAnimation.AnimationName = "being_attacked_02";
+            await Task.Delay(600);
+            skeletonAnimation.AnimationName = "idle";
         }
         else if (clickedCardEffect == "Bottleflip")
         {
+            gameManager.cardsInHand--;
             Debug.Log("[PlayCard] -  Playing Bottleflip");
         }
         else if (clickedCardEffect == "Five Finger Filet")
         {
+            gameManager.cardsInHand--;
             Debug.Log("[PlayCard] - Playing Five Finger Filet");
             healthFunction.RemoveHealth(2);
         }
