@@ -35,9 +35,11 @@ public class GameManager : MonoBehaviour
     public C_Mana manaFunctions;
     public C_Mana bossManaFunctions;
     public C_Health bossDoDamage;
+    public C_Health bossHealth;
     public SkeletonAnimation bossAnimation;
     public C_Bottleneck bottleneckFunctions;
     public GameObject endTurnButton;
+    public bool playerTurn;
 
     public static event Action<GameState> OnGameStateChanged;
 
@@ -93,12 +95,13 @@ public class GameManager : MonoBehaviour
             bottleneckFunctions.RemoveOneFromBottleneck();
 
         } 
+        Debug.Log("Warum machst du so");
         UpdateGameState(GameState.PlayerTurn);
     }
 
     public void PlayerTurn()
     {
-        raycast.enabled = true;
+        playerTurn = true;
         manaFunctions.CheckMaxMana();
         manaFunctions.SetMaxMana();
         bottleneckFunctions.CheckBottleneck();
@@ -106,6 +109,7 @@ public class GameManager : MonoBehaviour
     }
     public void EndPlayerTurn()
     {
+        playerTurn = false;
         endTurnButton.SetActive(false);
         UpdateGameState(GameState.OppoentsTurn);
     }
@@ -125,7 +129,7 @@ public class GameManager : MonoBehaviour
                     if(bossManaFunctions.mana >= 2)
                     {
                         bossManaFunctions.RemoveMana(2);
-                        bossDoDamage.RemoveHealth(2);
+                        bossDoDamage.RemoveHealth(2 + bottleneckFunctions.extraDamage);
                         bossAnimation.AnimationName = "attacking_01";
                         await Task.Delay(600);
                         bossAnimation.AnimationName = "idle";
@@ -137,7 +141,7 @@ public class GameManager : MonoBehaviour
                     if(bossManaFunctions.mana >= 3)
                     {
                         bossManaFunctions.RemoveMana(3);
-                        bossDoDamage.RemoveHealth(4);
+                        bossDoDamage.RemoveHealth(4 + bottleneckFunctions.extraDamage);
                         bossAnimation.AnimationName = "attacking_02";
                         await Task.Delay(600);
                         bossAnimation.AnimationName = "idle";
@@ -149,7 +153,7 @@ public class GameManager : MonoBehaviour
                     if(bossManaFunctions.mana >= 1)
                     {
                         bossManaFunctions.RemoveMana(1);
-                        bossDoDamage.RemoveHealth(1);
+                        bossDoDamage.RemoveHealth(1 + bottleneckFunctions.extraDamage);
                         bossAnimation.AnimationName = "attacking_01";
                         await Task.Delay(600);
                         bossAnimation.AnimationName = "idle";
@@ -161,7 +165,7 @@ public class GameManager : MonoBehaviour
                     if(bossManaFunctions.mana <= 2)
                     {
                         bossManaFunctions.RemoveMana(2);
-                        bossDoDamage.AddHealth(2);
+                        bossHealth.AddHealth(2);
                         bossAnimation.AnimationName = "attacking_01";
                         await Task.Delay(600);
                         bossAnimation.AnimationName = "idle";
