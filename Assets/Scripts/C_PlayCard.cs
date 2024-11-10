@@ -14,7 +14,7 @@ public class C_PlayCard : MonoBehaviour, IPointerDownHandler
     public C_Health healthFunction;
     public C_Health damageFunction;
 
-    public Animator playCardAnimation;
+    // public Animator playCardAnimation;
     public C_CardInfo cardInfoFunction;
     private string clickedCardEffect;
     public SkeletonAnimation skeletonAnimation;
