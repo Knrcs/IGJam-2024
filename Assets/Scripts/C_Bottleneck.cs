@@ -34,7 +34,6 @@ public class C_Bottleneck : MonoBehaviour
     {
         GenerateCards();
         PutCardsInBottleNeckDeck();
-        totalBottleneckCards += rdmBottleneckCards;
         rdmBottleneckCards = 0;
         bottleFillValue = totalBottleneckCards/10;
 
@@ -42,7 +41,7 @@ public class C_Bottleneck : MonoBehaviour
         Debug.Log("[BottleNeck] - Total Bottleneck Cards: " + totalBottleneckCards);
         bottleNeckFill.fillAmount = bottleFillValue;
 
-        if (totalBottleneckCards <= 5)
+        if (totalBottleneckCards >= 5)
         {
             extraDamage = 0;
         }
@@ -69,12 +68,17 @@ public class C_Bottleneck : MonoBehaviour
     {
         for(int i = 0; i < rdmBottleneckCards; i++)
         {
+            totalBottleneckCards++;
             Instantiate(prefabBottleNeckCard, BottleNeckDeck);
         }
     }
 
     public void RemoveOneFromBottleneck()
     {
+        if(totalBottleneckCards > 0)
+        {
+        totalBottleneckCards--;
         Destroy(BottleNeckDeck.transform.GetChild(0).gameObject);
+        }
     }
 }

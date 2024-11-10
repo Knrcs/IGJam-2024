@@ -5826,6 +5826,10 @@ PrefabInstance:
       propertyPath: healthText
       value: 
       objectReference: {fileID: 1217109761}
+    - target: {fileID: 4022681060578565613, guid: 498b63894627b43d398930fdc5f9851b, type: 3}
+      propertyPath: currentHealth
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5303785930185734779, guid: 498b63894627b43d398930fdc5f9851b, type: 3}
       propertyPath: m_Name
       value: PF_Player
@@ -5911,6 +5915,10 @@ PrefabInstance:
       propertyPath: healthText
       value: 
       objectReference: {fileID: 1990174836}
+    - target: {fileID: 7731912363460306994, guid: 82096726db40c4a519e52530b4a6be35, type: 3}
+      propertyPath: currentHealth
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8128155255390005658, guid: 82096726db40c4a519e52530b4a6be35, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -5969,7 +5977,7 @@ PrefabInstance:
       objectReference: {fileID: 1140514191}
     - target: {fileID: 2998313694523672817, guid: e5ec98d24cdc746289db37c8562da834, type: 3}
       propertyPath: cards.Array.size
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2998313694523672817, guid: e5ec98d24cdc746289db37c8562da834, type: 3}
       propertyPath: bossManaFunctions
@@ -5999,6 +6007,14 @@ PrefabInstance:
       propertyPath: cards.Array.data[4]
       value: 
       objectReference: {fileID: 11400000, guid: c4e00018ea4624629a9b2f07788dad43, type: 2}
+    - target: {fileID: 2998313694523672817, guid: e5ec98d24cdc746289db37c8562da834, type: 3}
+      propertyPath: cards.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9542e8f09e0ce46949bda8c884023454, type: 2}
+    - target: {fileID: 2998313694523672817, guid: e5ec98d24cdc746289db37c8562da834, type: 3}
+      propertyPath: cards.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 476afb7c9be5b475dbeb7c6be67f70d1, type: 2}
     - target: {fileID: 5124025614003722544, guid: e5ec98d24cdc746289db37c8562da834, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1044.0743
