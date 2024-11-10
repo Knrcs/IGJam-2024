@@ -19,11 +19,14 @@ public class C_PlayCard : MonoBehaviour, IPointerDownHandler
     public C_CardInfo cardInfoFunction;
     private string clickedCardEffect;
     public SkeletonAnimation skeletonAnimation;
+    public SkeletonAnimation[] animationCollection;
+    private int randomEnemyDMG;
+    private int randomPlayerDMG;
 
         private void Start()
     {
         gameManager = GameManager.instance;
-        skeletonAnimation = GameObject.FindGameObjectWithTag("Enemy").GetComponent<SkeletonAnimation>();
+        skeletonAnimation = gameManager.skeletonAssets[0];
         manaFunction = GameObject.FindGameObjectWithTag("Player").GetComponent<C_Mana>();
         healthFunction = GameObject.FindGameObjectWithTag("Player").GetComponent<C_Health>();
         damageFunction = GameObject.FindGameObjectWithTag("Enemy").GetComponent <C_Health>();
@@ -33,22 +36,41 @@ public class C_PlayCard : MonoBehaviour, IPointerDownHandler
 
         AddPhysics2DRaycaster();
     }
+    public void CheckBoss()
+    {
+        if(gameManager.bossRotation == 1)
+        {
+            skeletonAnimation = gameManager.skeletonAssets[0];
+        }
+        else if(gameManager.bossRotation == 2)
+        {
+            skeletonAnimation = gameManager.skeletonAssets[1];
+        }
+        else if(gameManager.bossRotation == 3)
+        {
+            skeletonAnimation = gameManager.skeletonAssets[2];
+        }
+    }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         //Play Card Function
-        if (manaFunction.mana >= cardInfoFunction.cards.manaCost)
+        if(gameManager.playerTurn)
         {
-            clickedCardEffect = eventData.pointerCurrentRaycast.gameObject.GetComponent<C_CardInfo>().cards.cardName;
-            manaFunction.RemoveMana(cardInfoFunction.cards.manaCost);
-            DoCardEvents();
-            // playCardAnimation.Play("AnimationAfterCardPlayed"); Maybe play Animation?
-            Destroy(eventData.pointerCurrentRaycast.gameObject);
+            if (manaFunction.mana >= cardInfoFunction.cards.manaCost)
+                {
+                    clickedCardEffect = eventData.pointerCurrentRaycast.gameObject.GetComponent<C_CardInfo>().cards.cardName;
+                    manaFunction.RemoveMana(cardInfoFunction.cards.manaCost);
+                    DoCardEvents();
+                    // playCardAnimation.Play("AnimationAfterCardPlayed"); Maybe play Animation?
+                    Destroy(eventData.pointerCurrentRaycast.gameObject);
+                }
+                else 
+                {
+                    Debug.Log("[PlayCard] - Not Enough Mana to Play: " + eventData.pointerCurrentRaycast.gameObject.name);
+                }
         }
-        else 
-        {
-            Debug.Log("[PlayCard] - Not Enough Mana to Play: " + eventData.pointerCurrentRaycast.gameObject.name);
-        }
+        
     }
 
     private void AddPhysics2DRaycaster()
@@ -73,6 +95,7 @@ public class C_PlayCard : MonoBehaviour, IPointerDownHandler
             skeletonAnimation.AnimationName = "being_attacked_01";
             await Task.Delay(600);
             skeletonAnimation.AnimationName = "idle";
+            gameManager.CheckHealth();
 
         }
         else if (clickedCardEffect == "Broken Bottle") //SO Broken Bottle
@@ -83,12 +106,14 @@ public class C_PlayCard : MonoBehaviour, IPointerDownHandler
             skeletonAnimation.AnimationName = "being_attacked_01";
             await Task.Delay(600);
             skeletonAnimation.AnimationName = "idle";
+            gameManager.CheckHealth();
         }
         else if (clickedCardEffect == "Barista") //SO Heal
         {
             gameManager.cardsInHand--;
             Debug.Log("[PlayCard] - Playing Barista Card");
             healthFunction.AddHealth(2);
+            gameManager.CheckHealth();
         }
         else if (clickedCardEffect == "Punch")
         {
@@ -98,18 +123,44 @@ public class C_PlayCard : MonoBehaviour, IPointerDownHandler
             skeletonAnimation.AnimationName = "being_attacked_02";
             await Task.Delay(600);
             skeletonAnimation.AnimationName = "idle";
+            gameManager.CheckHealth();
         }
         else if (clickedCardEffect == "Bottleflip")
         {
             gameManager.cardsInHand--;
             Debug.Log("[PlayCard] -  Playing Bottleflip");
+            healthFunction.AddHealth(3);
+            gameManager.CheckHealth();
         }
         else if (clickedCardEffect == "Five Finger Filet")
         {
             gameManager.cardsInHand--;
             Debug.Log("[PlayCard] - Playing Five Finger Filet");
             healthFunction.RemoveHealth(2);
+            gameManager.CheckHealth();
         }
+        else if (clickedCardEffect == "Hot Potato")
+        {
+            gameManager.cardsInHand--;
+            Debug.Log("[PlayCard] - Playing Hot Potato");
+            randomEnemyDMG = Random.Range(1,5);
+            randomPlayerDMG = Random.Range(1,5);
+
+            damageFunction.RemoveHealth(randomEnemyDMG);
+            healthFunction.RemoveHealth(randomPlayerDMG);
+
+            skeletonAnimation.AnimationName = "being_attacked_02";
+            await Task.Delay(600);
+            skeletonAnimation.AnimationName = "idle";
+            gameManager.CheckHealth();
+        }
+        else if (clickedCardEffect == "Lock")
+        {
+            gameManager.cardsInHand--;
+            Debug.Log("[PlayCard] - Playing Lock");
+            gameManager.canEnemyplay = false;
+        }
+
 
 
         else

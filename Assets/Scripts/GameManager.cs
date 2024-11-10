@@ -19,6 +19,11 @@ public class GameManager : MonoBehaviour
 
     //BOSSTURN
     private int randomPlayingCard;
+    public int bossRotation = 2;
+
+    public GameObject pirateBoss;
+    public GameObject seaCreatureBoss;
+    public GameObject CorkBoss;
 
 
 
@@ -35,9 +40,15 @@ public class GameManager : MonoBehaviour
     public C_Mana manaFunctions;
     public C_Mana bossManaFunctions;
     public C_Health bossDoDamage;
+    public C_Health bossHealth;
     public SkeletonAnimation bossAnimation;
     public C_Bottleneck bottleneckFunctions;
     public GameObject endTurnButton;
+    public bool playerTurn;
+    public GameObject loseScreen;
+    public bool canEnemyplay;
+    public SkeletonAnimation[] skeletonAssets;
+    public C_PlayCard playCard;
 
     public static event Action<GameState> OnGameStateChanged;
 
@@ -69,11 +80,20 @@ public class GameManager : MonoBehaviour
             PlayerTurn();
                 break;
             case GameState.OppoentsTurn:
-            OppoentsTurn();
+                if(canEnemyplay == false)
+                {
+                    UpdateGameState(GameState.DrawCard);
+                }
+                if(canEnemyplay == true)
+                {
+                    OppoentsTurn();
+                }
                 break;
             case GameState.Win:
+            Win();
                 break;
             case GameState.Lose:
+                LoseGame();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
@@ -93,12 +113,15 @@ public class GameManager : MonoBehaviour
             bottleneckFunctions.RemoveOneFromBottleneck();
 
         } 
+        Debug.Log("Warum machst du so");
+        canEnemyplay = true;
         UpdateGameState(GameState.PlayerTurn);
     }
 
     public void PlayerTurn()
     {
-        raycast.enabled = true;
+        playCard.CheckBoss();
+        playerTurn = true;
         manaFunctions.CheckMaxMana();
         manaFunctions.SetMaxMana();
         bottleneckFunctions.CheckBottleneck();
@@ -106,6 +129,7 @@ public class GameManager : MonoBehaviour
     }
     public void EndPlayerTurn()
     {
+        playerTurn = false;
         endTurnButton.SetActive(false);
         UpdateGameState(GameState.OppoentsTurn);
     }
@@ -125,11 +149,13 @@ public class GameManager : MonoBehaviour
                     if(bossManaFunctions.mana >= 2)
                     {
                         bossManaFunctions.RemoveMana(2);
-                        bossDoDamage.RemoveHealth(2);
+                        bossDoDamage.RemoveHealth(2 + bottleneckFunctions.extraDamage);
                         bossAnimation.AnimationName = "attacking_01";
                         await Task.Delay(600);
                         bossAnimation.AnimationName = "idle";
                         await Task.Delay(700);
+                        CheckHealth();
+
                     }
                     else break;
                 break;
@@ -137,11 +163,12 @@ public class GameManager : MonoBehaviour
                     if(bossManaFunctions.mana >= 3)
                     {
                         bossManaFunctions.RemoveMana(3);
-                        bossDoDamage.RemoveHealth(4);
+                        bossDoDamage.RemoveHealth(4 + bottleneckFunctions.extraDamage);
                         bossAnimation.AnimationName = "attacking_02";
                         await Task.Delay(600);
                         bossAnimation.AnimationName = "idle";
                         await Task.Delay(700);
+                        CheckHealth();
                     }
                     else break;
                 break;
@@ -149,11 +176,13 @@ public class GameManager : MonoBehaviour
                     if(bossManaFunctions.mana >= 1)
                     {
                         bossManaFunctions.RemoveMana(1);
-                        bossDoDamage.RemoveHealth(1);
+                        bossDoDamage.RemoveHealth(1 + bottleneckFunctions.extraDamage);
                         bossAnimation.AnimationName = "attacking_01";
                         await Task.Delay(600);
                         bossAnimation.AnimationName = "idle";
                         await Task.Delay(700);
+                        CheckHealth();
+
                     }
                     else break;
                 break;
@@ -161,11 +190,12 @@ public class GameManager : MonoBehaviour
                     if(bossManaFunctions.mana <= 2)
                     {
                         bossManaFunctions.RemoveMana(2);
-                        bossDoDamage.AddHealth(2);
+                        bossHealth.AddHealth(2);
                         bossAnimation.AnimationName = "attacking_01";
                         await Task.Delay(600);
                         bossAnimation.AnimationName = "idle";
                         await Task.Delay(700);
+                        CheckHealth();
                     } 
                     else break;
                 break;
@@ -184,6 +214,63 @@ public class GameManager : MonoBehaviour
         }
         lastNumber = rngCard;
         Debug.Log("[GameManager] - " + rngCard + "is the CardID");
+    }
+
+    public void LoseGame()
+    {
+        loseScreen.SetActive(true);
+        Time.timeScale = 0;
+
+
+    }
+
+    public void CheckHealth()
+    {
+        if (bossDoDamage.currentHealth <= 0)
+        {
+            UpdateGameState(GameState.Lose);
+        }
+        if (bossHealth.currentHealth <= 0)
+        {
+            UpdateGameState(GameState.Win);
+        }
+    }
+
+    public void Win()
+    {
+        if(bossRotation == 1)
+        {
+            bossAnimation = skeletonAssets[0];
+            seaCreatureBoss.SetActive(false);
+            pirateBoss.SetActive(true);
+            CorkBoss.SetActive(false);
+            bossRotation = 2;
+        }
+        else if(bossRotation == 2)
+        {
+            bossAnimation = skeletonAssets[1];
+            seaCreatureBoss.SetActive(true);
+            pirateBoss.SetActive(false);
+            CorkBoss.SetActive(false);
+
+            bossRotation = 3;
+        }
+        else if(bossRotation == 3)
+        {
+            bossAnimation = skeletonAssets[2];
+            seaCreatureBoss.SetActive(false);
+            pirateBoss.SetActive(false);
+            CorkBoss.SetActive(true);
+
+            bossRotation = 1;
+        }
+        bossHealth.currentHealth = 0;
+        bossHealth.healthBonus = bossHealth.healthBonus + 3;
+        bossHealth.currentHealth = 10 + bossHealth.healthBonus;
+        bossHealth.healthText.text = bossHealth.currentHealth.ToString();
+        manaFunctions.NewRoundMana(2);
+        bossManaFunctions.NewRoundMana(1);
+        UpdateGameState(GameState.DrawCard);
     }
     public enum GameState
     {
