@@ -73,6 +73,8 @@ public class C_Bottleneck : MonoBehaviour
         }
     }
 
-
-
+    public void RemoveOneFromBottleneck()
+    {
+        Destroy(BottleNeckDeck.transform.GetChild(0).gameObject);
+    }
 }

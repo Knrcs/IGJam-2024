@@ -74,8 +74,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281672210
+  m_fontColor: {r: 0.06950873, g: 0.13181765, b: 0.20754719, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -342,8 +342,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278244863
-  m_fontColor: {r: 1, g: 0.8365737, b: 0, a: 1}
+    rgba: 4286382077
+  m_fontColor: {r: 0.9936323, g: 1, b: 0.48584908, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -476,8 +476,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281672210
+  m_fontColor: {r: 0.07058824, g: 0.13333334, b: 0.20784314, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -699,7 +699,7 @@ MonoBehaviour:
   manaFunction: {fileID: 0}
   healthFunction: {fileID: 0}
   damageFunction: {fileID: 0}
-  playCardAnimation: {fileID: 0}
+  gameManager: {fileID: 0}
   cardInfoFunction: {fileID: 0}
   skeletonAnimation: {fileID: 0}
 --- !u!95 &6693214201414033104
