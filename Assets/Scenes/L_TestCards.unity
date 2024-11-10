@@ -3172,7 +3172,7 @@ PrefabInstance:
     - target: {fileID: 6455288371690646263, guid: b90c9d3e4512e431fa14aa1583ee7b78, type: 3}
       propertyPath: cards
       value: 
-      objectReference: {fileID: 11400000, guid: 42a6ee28603fe46338dea2007b2332a9, type: 2}
+      objectReference: {fileID: 11400000, guid: c4e00018ea4624629a9b2f07788dad43, type: 2}
     - target: {fileID: 6654324221710215213, guid: b90c9d3e4512e431fa14aa1583ee7b78, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -25.599976
